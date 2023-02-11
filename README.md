@@ -4,5 +4,5 @@ main 分支中是一些配置文件以及写过的一些class，基本所有vex�
 练习使用github请使用testing.cpp和分支test-from-vscode   
 写某台机器的程序请按照对应赛季对应机型名称寻找对应分支  
 ----2022-2023 spin up  
---------shooting_robot 飞轮发射式 ycx（独立）建造  
---------ejection_robot 省略（在对应分支中的说明文件中看） ； lxsh （负责） lxb (保底)
+--------shooting_robot 飞轮发射式 ycx（独立）建造  ； lxb lzh 程序   
+--------ejection_robot 投掷弹射式 机械省略（在对应分支中的说明文件中看） ； lxsh （负责） lxb (保底)程序   
