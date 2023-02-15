@@ -208,6 +208,9 @@ void af::move(float r,float l){
 
 // walk for degree 
   void af::go(int goal , go_mode mode , int speed){
+    if (goal == 0 or speed == 0 ){
+      return ;
+    }
     if (mode == af::go_mode::pid){
 
       pids go ;
@@ -220,7 +223,11 @@ void af::move(float r,float l){
       }
       return ;
     }
-
+    if (goal < 0){
+      if (speed > 0){
+        speed = -speed;
+      }
+    }
     else if (mode == af::go_mode::msec){
       reset();
       move(speed,speed);
