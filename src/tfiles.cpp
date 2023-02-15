@@ -136,25 +136,18 @@ af::pids::pids (int g){
 af::pids::pids (int g,int j){
         pre (g,j);
       }
-bool af::pids::check(int input,float& move){ // ʹ������ pids.pre(500);
-                                        //         while(pids.check(MotorLF.position(),move)) walk(move,move);
-
-        float delta = goal - input;
-        //*
+bool af::pids::check(int input){
+        delta = goal - input;
         if (Brain.Timer.time(sec) >= outtime) {
           return 0;
         }
         if ( fabs(delta) > jump){
           outtime = Brain.Timer.time(sec) + jumptime;
         }
-        //*/
+        return 1;
+      }
 
-        /*
-          if (abs(delta) < jump*0.05){
-            return 0;
-          }
-        //*/
-
+float af::pids::moving(){
         float timenow = Brain.Timer.time(sec);
         float delattime = timenow - lasttime;
         lasttime = timenow;
@@ -169,10 +162,8 @@ bool af::pids::check(int input,float& move){ // ʹ������ pids.pre(50
         int d = ( delta - lastd ) * dk / delattime;
         lastd = delta;
 
-        move = p + i + d;
-
-        return 1;
-      }
+        return p + i + d;
+}
 
 void af::move(float r,float l){
     MotorLF.spin(forward,l,pct);
@@ -216,12 +207,36 @@ void af::move(float r,float l){
   }
 
 // walk for degree 
-  void af::go(int goal){
-    pids go ;
-    go.pre(goal,10);
-    float movement;
-    reset();
-    while ( go.check(MotorLB.position(degrees) , movement) ) move(movement,movement);
+  void af::go(int goal , go_mode mode , int speed){
+    if (mode == af::go_mode::pid){
+
+      pids go ;
+      go.pre(goal,10);
+      float movement;
+      reset();
+      while ( go.check(MotorLB.position(degrees)) ) {
+        movement = go.moving() * speed / 100;
+        move(movement,movement);
+      }
+      return ;
+    }
+
+    else if (mode == af::go_mode::msec){
+      reset();
+      move(speed,speed);
+      waitUntil( Brain.Timer.time(msec) > goal);
+      Stop();
+    }
+
+    else if (mode == af::go_mode::degree){
+      reset();
+      move(speed,speed);
+      waitUntil(MotorLF.position(degrees) > goal);
+      Stop();
+    }
+
+    return ;
+    
   }
 // turn for degree
   void af::turn(int goal){
@@ -229,7 +244,10 @@ void af::move(float r,float l){
     go.pre(goal,10);
     float movement;
     Ine.calibrate();
-    while ( go.check (Ine.heading(degrees) , movement) )  move(movement,-movement);
+    while ( go.check (Ine.heading(degrees)) )  {
+      movement = go.moving();
+      move(movement,-movement);
+    }
   }
 
   void af::turnto(int x,int y){
@@ -237,7 +255,8 @@ void af::move(float r,float l){
     pids turning;
     turning.pre (goal,5,0.5,0.7,0.7);
     float movement;
-    while (turning.check(GPS.heading() , movement)){
+    while (turning.check(GPS.heading())){
+      movement = turning.moving();
       move (movement,-movement);
     }
   }
@@ -253,10 +272,8 @@ void af::move(float r,float l){
     while (dist > 10){
       tgoal = atan( (y-GPS.yPosition(mm)) / (x-GPS.xPosition(mm)) );
       dist = pow( (y-GPS.yPosition(mm))*(y-GPS.yPosition(mm)) + (x-GPS.xPosition(mm))*(x-GPS.xPosition(mm)) , 0.5 );
-      walking.check(-dist , wa);
-      turning.check(tgoal , tu);
+      wa = walking.moving();
+      tu = turning.moving();
       move(wa-tu , wa+tu);
     }
   }
-
-
