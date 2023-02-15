@@ -67,12 +67,15 @@ namespace af{
 
       float outtime;
 
+      float delta;
+
     public:
       void pre (int g,int j=10,float pkin = 0.5,float ikin = 0.8,float dkin = 0.8,float imaxin = 20.0);
       pids ();
       pids (int g);
       pids (int g,int j);
-      bool check(int input,float& move);
+      bool check(int input);
+      float moving();
   };
 
   void move(float r,float l);
@@ -81,8 +84,14 @@ namespace af{
 
   void reset();
 
+  enum class go_mode{
+    pid,
+    msec,
+    degree
+  };
+
 // walk for degree 
-  void go(int goal);
+void go(int goal , go_mode mode = af::go_mode::pid , int speed = 100);
 // turn for degree
   void turn(int goal);
 
