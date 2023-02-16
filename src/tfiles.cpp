@@ -126,6 +126,10 @@ void af::pids::pre (int g,int j,float pkin ,float ikin ,float dkin ,float imaxin
         ik = ikin;
         dk = dkin;
         imax = imaxin;
+        i=0;
+        lasttime = Brain.Timer.time(sec);
+        lastd = 0;
+        jumptime = 1.0;
       }
 af::pids::pids (){
         pre (100);
@@ -138,6 +142,7 @@ af::pids::pids (int g,int j){
       }
 bool af::pids::check(int input){
         delta = goal - input;
+        
         if (Brain.Timer.time(sec) >= outtime) {
           return 0;
         }
@@ -147,11 +152,15 @@ bool af::pids::check(int input){
         return 1;
       }
 
+
+
 float af::pids::moving(){
+        Controller1.Screen.newLine();
+        
         float timenow = Brain.Timer.time(sec);
         float delattime = timenow - lasttime;
         lasttime = timenow;
-        delattime /= 1;
+        delattime /= 0.05;
 
         p = delta * pk;
 
@@ -161,36 +170,41 @@ float af::pids::moving(){
 
         int d = ( delta - lastd ) * dk / delattime;
         lastd = delta;
-
-        return p + i + d;
+        
+        float result = p+i+d;
+        Controller1.Screen.print("d:%.1f jt:%.1f    ", delta,jumptime);
+        //Controller1.Screen.print("p:%.1f", MotorLF.position(degrees));
+        //Controller1.Screen.print("dt:%.1f    ",delattime);
+        //Controller1.Screen.print("p:%.1f i:%.1f d:%.1f", p,i,d);
+        return result;
 }
 
 void af::move(float r,float l){
     MotorLF.spin(forward,l,pct);
     MotorLB.spin(forward,l,pct);
-  //  MotorLM.spin(forward,l,pct);
+    MotorLM.spin(forward,l,pct);
     MotorRF.spin(forward,r,pct);
     MotorRB.spin(forward,r,pct);
-  //  MotorRM.spin(forward,r,pct);
+    MotorRM.spin(forward,r,pct);
   }
 
   void af::Stop(bool flag ){
     if (flag == true ){
       MotorLF.stop(hold);
       MotorLB.stop(hold);
-  //    MotorLM.stop(hold);
+      MotorLM.stop(hold);
       MotorRF.stop(hold);
       MotorRB.stop(hold);
-  //    MotorRM.stop(hold);
+      MotorRM.stop(hold);
       return;
     }
     else {
       MotorLF.stop();
       MotorLB.stop();
-  //    MotorLM.stop();
+      MotorLM.stop();
       MotorRF.stop();
       MotorRB.stop();
-  //    MotorRM.stop();
+      MotorRM.stop();
       return;
     }
   }
@@ -198,10 +212,10 @@ void af::move(float r,float l){
   void af::reset(){
     MotorLF.resetPosition();
     MotorLB.resetPosition();
-  //  MotorLM.resetPosition();
+    MotorLM.resetPosition();
     MotorRF.resetPosition();
     MotorRB.resetPosition();
-  //  MotorRM.resetPosition();
+    MotorRM.resetPosition();
     //Ine.calibrate();
     Brain.Timer.reset();
   }
@@ -219,7 +233,7 @@ void af::move(float r,float l){
       reset();
       while ( go.check(MotorLB.position(degrees)) ) {
         movement = go.moving() * speed / 100;
-        move(movement,movement);
+        move(movement * 0.3,movement * 0.3);
       }
       return ;
     }
@@ -245,16 +259,35 @@ void af::move(float r,float l){
     return ;
     
   }
+
+  const float turning_k = (2503.2)/360/3;
 // turn for degree
-  void af::turn(int goal){
-    pids go ;
-    go.pre(goal,10);
-    float movement;
-    Ine.calibrate();
-    while ( go.check (Ine.heading(degrees)) )  {
-      movement = go.moving();
-      move(movement,-movement);
+  void af::turn(int goal , af::turn_mode mode){
+    if (mode == af::turn_mode::dipan){
+      pids go ;
+      go.pre(goal * turning_k,10);
+      float movement;
+      reset();
+      while ( go.check (MotorLB.position(degrees)) )  {
+        movement = go.moving();
+        move(-movement * 0.4,movement * 0.4);
+      }
+      Stop();
+      return ;
     }
+    if (mode == af::turn_mode::ine){
+      pids go ;
+      go.pre(goal,10);
+      float movement;
+      Ine.calibrate();
+      while ( go.check (Ine.heading(degrees)) )  {
+        movement = go.moving();
+        move(movement,-movement);
+      }
+      return ;
+      Stop();
+    }
+    return ;
   }
 
   void af::turnto(int x,int y){
