@@ -1,4 +1,4 @@
-# vex-code
+# VEX code
 main 分支中是一些配置文件以及写过的一些class，基本所有vex程序都可以通用，所以一般不更改  
 如果想修改更新请转到分支 basics ，不要直接修改主分支中的程序  
 练习使用github请使用testing.cpp和分支test-from-vscode   
