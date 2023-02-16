@@ -172,10 +172,7 @@ float af::pids::moving(){
         lastd = delta;
         
         float result = p+i+d;
-        //Controller1.Screen.print("d:%.1f jt:%.1f    ", delta,jumptime);
-        //Controller1.Screen.print("p:%.1f", MotorLF.position(degrees));
-        //Controller1.Screen.print("dt:%.1f    ",delattime);
-        //Controller1.Screen.print("p:%.1f i:%.1f d:%.1f", p,i,d);
+        
         return result;
 }
 
