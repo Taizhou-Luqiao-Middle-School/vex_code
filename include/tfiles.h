@@ -70,7 +70,7 @@ namespace af{
       float delta;
 
     public:
-      void pre (int g,int j=10,float pkin = 0.5,float ikin = 0.8,float dkin = 0.8,float imaxin = 20.0);
+      void pre (int g,int j = 10,float pkin = 0.5,float ikin = 0.3,float dkin = 0.8,float imaxin = 10.0);
       pids ();
       pids (int g);
       pids (int g,int j);
@@ -91,9 +91,14 @@ namespace af{
   };
 
 // walk for degree 
-void go(int goal , go_mode mode = af::go_mode::pid , int speed = 100);
+  void go(int goal , go_mode mode = af::go_mode::pid , int speed = 100);
+
+  enum class turn_mode{
+    dipan,
+    ine
+  };
 // turn for degree
-  void turn(int goal);
+  void turn(int goal , turn_mode mode = af::turn_mode::dipan);
 
   void turnto(int x,int y);
   void walkto(int x,int y);
