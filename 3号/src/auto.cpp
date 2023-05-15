@@ -52,7 +52,34 @@ void Left (){
 
 }
 //*/
+const float u = 1.00;
+void moveintime(float l,float r,int t,bool st=0){
+    move(l,r);
+    wait(t*u,msec);
+    if (st==1){
+        af::stop(1);
+        wait(500,msec);
+        af::stop(0);
+    }
+    return ;
+}
+
 void myAuto()
 {
+    moveintime(100,100,720);
+    moveintime(100,-80,540,1);
+    shot();
+    MotorFun.spin(fwd,100,pct);
+    wait(400,msec);
+    moveintime(100,-100,170);
+    moveintime(100,100,1180);
+    moveintime(20,100,448,1);
+    moveintime(60,60,200);
+    MotorFun.stop();
+    moveintime(-60,-60,350,1);
+
     
+
+    Pne1.set(1);
+    af::stop(0);
 }

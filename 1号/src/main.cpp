@@ -24,12 +24,13 @@
 // ---- END VEXCODE CONFIGURED DEVICES ----
 
 #include "vex.h"
-
+#include "tfiles.h"
 using namespace vex;
 
 competition Competition;
 float degr = 55; 
 void pre_auton(void) {
+  af::reset();
   Controller1.Screen.clearScreen();
   Rotation.resetPosition();
   MotorShot.spin(fwd,100,pct);
@@ -102,20 +103,19 @@ void get()
   Controller1.ButtonL2.pressed(get2);
 }
 //*
+void p1(){
+  Pne1.set( !Pne1.value() );
+  Pne2.set( !Pne2.value() );
+}
+
 void p()
 {
-  if(Controller1.ButtonUp.pressing())
-  {
-    //Pne1.set(true);
-    //Pne2.set(true);
-  }
-  else if(Controller1.ButtonDown.pressing())
-  {
-    //Pne1.set(false);
-    //Pne2.set(false);
-  }
+  Controller1.ButtonDown.pressed(p1);
 }
-//*/
+
+void spread(){
+  Pne2.set(1);
+}
 
 void usercontrol(void) {
   while (1) {
@@ -124,18 +124,32 @@ void usercontrol(void) {
     get();
     p();
     Controller1.Screen.clearLine();
-    Controller1.Screen.print("Shot temp:%.2f ℃",MotorShot.temperature(celsius));
+    //Controller1.Screen.print("Shot temp:%.2f ℃",MotorShot.temperature(celsius));
     wait(20, msec);
+    Controller1.ButtonUp.pressed(spread);
   }
 }
+
+int t_printing(){
+    while(1){
+        Controller1.Screen.newLine();
+        Controller1.Screen.print("p:%.1f t:%.1f        ",MotorLF.position(degrees),Brain.Timer.time(sec));
+    }
+    return 1;
+}
+task printing= task(t_printing);
 
 int main() {
   Competition.autonomous(autonomous);
   Competition.drivercontrol(usercontrol);
   pre_auton();
+  printing.resume();
   while (true) {
     Brain.Screen.printAt(1,30,"%.2f",Rotation.position(deg));
+    Controller1.Screen.newLine();
+    Controller1.Screen.print("p:%.1f t:%.1f",MotorLF.position(degrees),Brain.Timer.time(msec));
     wait(100, msec);
     if(Controller1.ButtonLeft.pressing()) myAuto();
   }
+  printing.suspend();
 }

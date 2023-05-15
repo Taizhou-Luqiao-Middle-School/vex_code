@@ -40,6 +40,8 @@ void pre_auton(void) {
   waitUntil(!Inertial4.isCalibrating());
   Controller1.Screen.print("Ready!");
   vexcodeInit();
+  Pne1.set(0);
+  Pne2.set(0);
 }
 
 
@@ -63,13 +65,8 @@ int getinf()
   while(1)
     now = Rotation.position(deg);
 }
-
-// 发射disc
-void Shot()
-{
-  if(Controller1.ButtonR1.pressing())
-  {
-    task t_get = task(getinf);
+void shoting(){
+  task t_get = task(getinf);
     t_get.resume();
     MotorShot.spin(fwd,100,pct);
     waitUntil(fabs( float (now) )<= degr);
@@ -81,7 +78,11 @@ void Shot()
     // MotorShot.spin(fwd,100,pct);
     // waitUntil(fabs( float (now) == degr-5);
     // MotorShot.stop(hold);
-  }
+}
+// 发射disc
+void Shot()
+{
+  Controller1.ButtonR1.pressed(shoting);
 }
 int cnt1 = 0,cnt2 = 0;
 void get1()
@@ -106,25 +107,28 @@ void get()
   Controller1.ButtonL2.pressed(get2);
 }
 //*
+
+void p1(){
+  Pne1.set( !Pne1.value() );
+  Pne2.set( !Pne2.value() );
+}
+
 void p()
 {
-  if(Controller1.ButtonUp.pressing())
-  {
-    //Pne1.set(true);
-    //Pne2.set(true);
-  }
-  else if(Controller1.ButtonDown.pressing())
-  {
-    //Pne1.set(false);
-    //Pne2.set(false);
-  }
+  Controller1.ButtonDown.pressed(p1);
 }
 //*/
 
 const bool debuging = 1;
 void usercontrol(void) {
   Brain.Timer.reset();
+  af::stop(0);
   while (1) {
+    // if (Controller1.ButtonDown.pressing()){
+    //   Pne1.set( !Pne1.value() );
+    //   Pne2.set( !Pne2.value() );
+    // }
+    p();
     if ( Brain.Timer.time(sec) >= 102 ) {
       Pne1.set(1);
     }

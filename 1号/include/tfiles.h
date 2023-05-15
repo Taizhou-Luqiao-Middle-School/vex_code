@@ -77,7 +77,7 @@ namespace af{
 
   void move(float r,float l);
 
-  void Stop(bool flag = false);
+  void stop(bool flag = false);
 
   void reset();
 

@@ -22,7 +22,7 @@ controller Controller1 = controller(primary);
 inertial Ine = inertial(PORT16);
 gps GPS = gps(PORT1, 1.00, 2.00, mm, 180);
 
-digital_out Pne1 = digital_out(Brain.ThreeWirePort.A);
+digital_out Pne1 = digital_out(Brain.ThreeWirePort.C);
 digital_out Pne2 = digital_out(Brain.ThreeWirePort.B);
 
 // VEXcode generated functions

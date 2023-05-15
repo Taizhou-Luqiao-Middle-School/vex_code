@@ -68,28 +68,61 @@ void Left(){
     Left2();
 }
 //*/
+const float u = 1.00;
+void moveintime(float l,float r,int t,bool st=0){
+    move(l,r);
+    wait(t*u,msec);
+    if (st==1){
+        af::stop(1);
+        wait(500,msec);
+        af::stop(0);
+    }
+    return ;
+}
+
+void auto_1(){
+    moveintime(100,100,720);
+    moveintime(100,-80,585,1);
+    shot();
+    MotorFun.spin(fwd,100,pct);
+    wait(400,msec);
+    moveintime(100,-100,235);
+    moveintime(100,100,1180);
+    moveintime(20,100,448,1);
+    moveintime(60,60,200);
+    MotorFun.stop();
+    moveintime(-60,-60,350,1);
+
+    
+
+    Pne1.set(1);
+    af::stop(0);
+}
+
+void auto_2(){
+    moveintime(-10,-100,580);
+    moveintime(-50,-50,300,1);
+    shot();
+
+    MotorFun.spin(fwd,100,pct);
+    moveintime(70,-70,275,1);
+    moveintime(70,70,250);
+    moveintime(40,90,270);
+    moveintime(10,10,200);
+
+    moveintime(-50,-50,100);
+    moveintime(-100,100,520,1);
+    moveintime(100,100,1000);
+    moveintime(100,-100,470,1);
+    wait(800,msec);
+    shot();
+
+    af::stop();
+    MotorFun.stop();
+    Pne1.set(0);
+}
+
 void myAuto()
 {
-    move(100,100);
-    wait(720,msec);
-    move(100,-80);
-    wait(610,msec);
-    Stop();
-    wait(300,msec);
-    shot();
-    MotorFun.spin(fwd,-100,pct);
-    wait(400,msec);
-    move(100,-100);
-    wait(250,msec); // 运行前必须调试此参数
-    move(100,100);
-    wait(1175,msec);
-    move(20,100);
-    wait(448,msec);
-    Stop();
-    move(5,5);
-    wait(770,msec);
-    MotorFun.stop();
-
-
-    Stop();
+    auto_1();
 }

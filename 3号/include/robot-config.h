@@ -17,6 +17,8 @@ extern controller Controller1;
 extern gps GPS;
 extern inertial Ine;
 
+extern digital_out Pne1 ,Pne2;
+
 extern float degr;
 
 /**

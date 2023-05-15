@@ -183,23 +183,23 @@ void af::move(float r,float l){
     MotorRM.spin(forward,r,pct);
   }
 
-  void af::Stop(bool flag ){
+  void af::stop(bool flag ){
     if (flag == true ){
       MotorLF.stop(hold);
       MotorLB.stop(hold);
-  //    MotorLM.stop(hold);
+      MotorLM.stop(hold);
       MotorRF.stop(hold);
       MotorRB.stop(hold);
-  //    MotorRM.stop(hold);
+      MotorRM.stop(hold);
       return;
     }
     else {
-      MotorLF.stop();
-      MotorLB.stop();
-  //    MotorLM.stop();
-      MotorRF.stop();
-      MotorRB.stop();
-  //    MotorRM.stop();
+      MotorLF.stop(coast);
+      MotorLB.stop(coast);
+      MotorLM.stop(coast);
+      MotorRF.stop(coast);
+      MotorRB.stop(coast);
+      MotorRM.stop(coast);
       return;
     }
   }
@@ -207,10 +207,10 @@ void af::move(float r,float l){
   void af::reset(){
     MotorLF.resetPosition();
     MotorLB.resetPosition();
-  //  MotorLM.resetPosition();
+    MotorLM.resetPosition();
     MotorRF.resetPosition();
     MotorRB.resetPosition();
-  //  MotorRM.resetPosition();
+    MotorRM.resetPosition();
     //Ine.calibrate();
     Brain.Timer.reset();
   }

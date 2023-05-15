@@ -199,12 +199,12 @@ void af::move(float r,float l){
       return;
     }
     else {
-      MotorLF.stop();
-      MotorLB.stop();
-      MotorLM.stop();
-      MotorRF.stop();
-      MotorRB.stop();
-      MotorRM.stop();
+      MotorLF.stop(coast);
+      MotorLB.stop(coast);
+      MotorLM.stop(coast);
+      MotorRF.stop(coast);
+      MotorRB.stop(coast);
+      MotorRM.stop(coast);
       return;
     }
   }

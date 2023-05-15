@@ -106,20 +106,15 @@ void get()
   Controller1.ButtonL2.pressed(get2);
 }
 //*
+void p1(){
+  Pne1.set( !Pne1.value() );
+  Pne2.set( !Pne2.value() );
+}
+
 void p()
 {
-  if(Controller1.ButtonUp.pressing())
-  {
-    //Pne1.set(true);
-    //Pne2.set(true);
-  }
-  else if(Controller1.ButtonDown.pressing())
-  {
-    //Pne1.set(false);
-    //Pne2.set(false);
-  }
+  Controller1.ButtonDown.pressed(p1);
 }
-//*/
 
 const bool debuging = 1;
 void usercontrol(void) {

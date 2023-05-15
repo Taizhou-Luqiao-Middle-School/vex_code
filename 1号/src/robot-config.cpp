@@ -22,6 +22,8 @@ controller Controller1 = controller(primary);
 inertial Ine = inertial(PORT3);
 gps GPS = gps(PORT5, 1.00, 2.00, mm, 180);
 
+digital_out Pne1 = digital_out(Brain.ThreeWirePort.A);
+digital_out Pne2 = digital_out(Brain.ThreeWirePort.B);
 // VEXcode generated functions
 // define variable for remote controller enable/disable
 bool RemoteControlCodeEnabled = true;

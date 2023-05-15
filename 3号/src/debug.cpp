@@ -30,7 +30,7 @@ void debug::experiment(){
                         m = go.moving();
                         move(m,m);
                     }
-                    af::Stop();
+                    af::stop();
 
                     go.pre(-500);
                     MotorLF.resetPosition();
@@ -38,14 +38,14 @@ void debug::experiment(){
                         m = go.moving();
                         move(m,m);
                     }
-                    af::Stop();
+                    af::stop();
 
                     Controller1.Screen.clearLine();
                     Controller1.Screen.print ("%.1f %.1f %.1f %d t:%.1f",p,i,d,imax,Brain.Timer.time(sec)/2.0);
                     wait (2,sec);
                 }
             }
-            af::Stop();
+            af::stop();
             Controller1.Screen.clearLine();
             Controller1.Screen.print("正在检查电机温度...");
             float high_t = MotorLF.temperature();

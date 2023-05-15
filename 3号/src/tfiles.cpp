@@ -188,7 +188,7 @@ void af::move(float r,float l){
     MotorRM.spin(forward,r,pct);
   }
 
-  void af::Stop(bool flag ){
+  void af::stop(bool flag ){
     if (flag == true ){
       MotorLF.stop(hold);
       MotorLB.stop(hold);
@@ -235,7 +235,7 @@ void af::move(float r,float l){
         movement = go.moving() * speed / 100;
         move(movement * 0.3,movement * 0.3);
       }
-      Stop();
+      stop();
       return ;
     }
     if (goal < 0){
@@ -247,14 +247,14 @@ void af::move(float r,float l){
       reset();
       move(speed,speed);
       waitUntil( Brain.Timer.time(msec) > goal);
-      Stop();
+      stop();
     }
 
     else if (mode == af::go_mode::degree){
       reset();
       move(speed,speed);
       waitUntil(MotorLF.position(degrees) > goal);
-      Stop();
+      stop();
     }
 
     return ;
@@ -273,7 +273,7 @@ void af::move(float r,float l){
         movement = go.moving();
         move(-movement * 0.4,movement * 0.4);
       }
-      Stop();
+      stop();
       return ;
     }
     if (mode == af::turn_mode::ine){
@@ -286,7 +286,7 @@ void af::move(float r,float l){
         move(movement,-movement);
       }
       return ;
-      Stop();
+      stop();
     }
     return ;
   }
