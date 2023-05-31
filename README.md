@@ -9,10 +9,10 @@ ___
 
 #### 历年程序  
 * 2022-2023 spin up
-    * ___shooting_robot ___
+    * shooting_robot
         * ycx建造
         * __程序__ _lxb_ _lzh_    
-    * ___ejection robot ___ 
+    * ejection robot
         * 机械省略
         * __程序__ _lxsh_ _lxb_    
 * 2023-2024 over under
