@@ -1,0 +1,18 @@
+{
+	"project": {
+		"name": "Teaching_tests",
+		"slot": 8,
+		"description": "teaching",
+		"platform": "V5",
+		"creationDate": "Sat, 04 Feb 2023 13:52:09 GMT",
+		"language": "cpp",
+		"sdkVersion": "V5_20220726_10_00_00",
+		"cpp": {
+			"includePath": []
+		}
+	},
+	"extension": {
+		"version": "0.3.0",
+		"json": 1
+	}
+}
