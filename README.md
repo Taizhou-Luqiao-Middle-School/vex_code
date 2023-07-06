@@ -4,7 +4,7 @@
 1. 前言
 2. 语言基础说明<br>
    VEX程序可以支持C++和python，但是在这里只涉及C++<br>
-   如果有python基础而没有C++基础，建议访问[菜鸟教程]([https://www.runoob.com](https://www.runoob.com/cplusplus/cpp-tutorial.html))来学习语法知识<br>
+   如果有python基础而没有C++基础，建议访问[菜鸟教程](https://www.runoob.com/cplusplus/cpp-tutorial.html)来学习语法知识<br>
    如果编程基础近似为0而对编程有兴趣的同学，建议先在[洛谷题单](https://www.luogu.com.cn/training/list)完成入门系列之后再来看VEX的教程
 4. 编译环境
 5. 硬件条件
