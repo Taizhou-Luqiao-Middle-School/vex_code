@@ -3,22 +3,20 @@
 ### 00 序言
 1. 前言
 2. 语言基础说明<br>
-   >>>
+   >
    > VEX程序可以支持C++和python，但是在这里只涉及C++<br>
    > 如果有python基础而没有C++基础，建议访问[菜鸟教程](https://www.runoob.com/cplusplus/cpp-tutorial.html)来学习语法知识<br>
    > 如果编程基础近似为0而对编程有兴趣的同学，建议先在[洛谷题单](https://www.luogu.com.cn/training/list)完成入门系列之后再来看VEX的教程
-   >>>
+   >
 4. 编译环境
-   >>>
-   >>> 支持VEX程序的软件有 [vscode](https://code.visualstudio.com/sha/download?build=stable&os=win32-x64-user) 、VEXcode pro v5等，本教程只介绍vscode的使用<br>
-   >>> 点击此处的链接可以下载到vscode的安装包<br>
-   >>> 打开vscode之后，需要下载拓展 chinese , c/c++ , VEX Robotics<br>
-   >>> `如果有兴趣可以追加拓展 Better C++ Syntax 、 C/C++ Compile Run 、 Dracula Official等` <br>
-   >>> 另外，为了防患于未然，下载一个git和及时把代码上传到github是相当的有必要的<br>
-   >>>（我才不会告诉你我有一次文件损坏了只好从头重写呢）<br>
-   >>> 下载git只需要跟着vscode的窗口一通按就好了，如何使用请看网上的[教程](https://www.runoob.com/git/git-tutorial.html)<br>
-   >>> 可以点击`打开文件夹`来开始你的代码
-   >>>
+   > 支持VEX程序的软件有 [vscode](https://code.visualstudio.com/sha/download?build=stable&os=win32-x64-user) 、VEXcode pro v5等，本教程只介绍vscode的使用<br>
+   > 点击此处的链接可以下载到vscode的安装包<br>
+   > 打开vscode之后，需要下载拓展 chinese , c/c++ , VEX Robotics<br>
+   > `如果有兴趣可以追加拓展 Better C++ Syntax 、 C/C++ Compile Run 、 Dracula Official等` <br>
+   > 另外，为了防患于未然，下载一个git和及时把代码上传到github是相当的有必要的<br>
+   >（我才不会告诉你我有一次文件损坏了只好从头重写呢）<br>
+   > 下载git只需要跟着vscode的窗口一通按就好了，如何使用请看网上的[教程](https://www.runoob.com/git/git-tutorial.html)<br>
+   > 可以点击`打开文件夹`来开始你的代码
 6. 硬件条件
 7. VEX社区
 
