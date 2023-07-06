@@ -4,19 +4,19 @@
 1. 前言
 2. 语言基础说明<br>
    >
-   > VEX程序可以支持C++和python，但是在这里只涉及C++<br>
-   > 如果有python基础而没有C++基础，建议访问[菜鸟教程](https://www.runoob.com/cplusplus/cpp-tutorial.html)来学习语法知识<br>
+   > VEX程序可以支持 _C++_ 和 _python_ ，但是在这里只涉及 ___C++___ <br>
+   > 如果有 _python_ 基础而没有 _C++_ 基础，建议访问[菜鸟教程](https://www.runoob.com/cplusplus/cpp-tutorial.html)来学习语法知识<br>
    > 如果编程基础近似为0而对编程有兴趣的同学，建议先在[洛谷题单](https://www.luogu.com.cn/training/list)完成入门系列之后再来看VEX的教程
    >
 4. 编译环境
    > 支持VEX程序的软件有 [vscode](https://code.visualstudio.com/sha/download?build=stable&os=win32-x64-user) 、`VEXcode pro v5`等，本教程只介绍`vscode`的使用<br>
    > 点击此处的链接可以下载到`vscode`的安装包<br>
-   > 打开`vscode`之后，需要下载拓展 `chinese , c/c++ , VEX Robotics`<br>
+   > 打开`vscode`之后，需要下载拓展 _chinese_ , _c/c++_ , _VEX Robotics_ <br>
    > `如果有兴趣可以追加拓展 Better C++ Syntax 、 C/C++ Compile Run 、 Dracula Official等` <br>
-   > 另外，为了防患于未然，下载一个`git`和及时把代码上传到`github`是相当的有必要的<br>
+   > 另外，为了防患于未然，下载一个 _git_ 和及时把代码上传到 _github_ 是相当的有必要的<br>
    >（我才不会告诉你我有一次文件损坏了只好从头重写呢）<br>
-   > 下载`git`只需要跟着`vscode`的窗口一通按就好了，如何使用请看网上的[教程](https://www.runoob.com/git/git-tutorial.html)<br>
-   > 可以点击`打开文件夹`来开始你的代码
+   > 下载 _git_ 只需要跟着 _vscode_ 的窗口一通按就好了，如何使用请看网上的[教程](https://www.runoob.com/git/git-tutorial.html)<br>
+   > 可以点击 _打开文件夹_ 来开始你的代码
 6. 硬件条件
    > 主机<br>
    > 手柄<br>
@@ -31,7 +31,10 @@
 
 ### 01 面向对象
 1. 面向对象思维的介绍及引入
-   > [wiki介绍](https://zh.wikipedia.org/wiki/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1)
+   > [wiki介绍](https://zh.wikipedia.org/wiki/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1)<br>
+   > 程序设计思维中，与`面向对象`相对的概念叫做`面向过程`。<br>
+   > 后者考虑问题是通常把问题拆分成几个小问题，在编写程序中对应的行为一般有编写若干个函数。由于OI中一般只要考虑一个主问题即可，所以面向对象在OI中出现较多<br>
+   > 前者则是将一个个功能封装进 _对象_ 中，其对应的行为以实现 _类(class)_ 为典型。
 3. 访问修饰符
 4. 重载函数
 5. 构造函数，析构函数及拷贝构造函数
