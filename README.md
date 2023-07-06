@@ -18,13 +18,13 @@
    > 下载`git`只需要跟着`vscode`的窗口一通按就好了，如何使用请看网上的[教程](https://www.runoob.com/git/git-tutorial.html)<br>
    > 可以点击`打开文件夹`来开始你的代码
 6. 硬件条件
-   > 主机
-   > 手柄
-   > 场控
-   > 钢条
-   > 传感器
-   > 电机
-   > 气泵
+   > 主机<br>
+   > 手柄<br>
+   > 场控<br>
+   > 钢条<br>
+   > 传感器<br>
+   > 电机<br>
+   > 气泵<br>
 8. VEX社区
    > VEX在[B站](https://www.bilibili.com/)中并不算极小众的，其中更新的比较多的up主是[TXTaylor297992](https://space.bilibili.com/1684280853)<br>
    > 此外，VEX有[中文官方论坛](https://vexforum.cn/)，在这里可以下载到官方给出的规则文档和场地拼接的文档
