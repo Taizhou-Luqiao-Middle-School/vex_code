@@ -18,7 +18,16 @@
    > 下载`git`只需要跟着`vscode`的窗口一通按就好了，如何使用请看网上的[教程](https://www.runoob.com/git/git-tutorial.html)<br>
    > 可以点击`打开文件夹`来开始你的代码
 6. 硬件条件
-7. VEX社区
+   > 主机
+   > 手柄
+   > 场控
+   > 钢条
+   > 传感器
+   > 电机
+   > 气泵
+8. VEX社区
+   > VEX在[B站](https://www.bilibili.com/)中并不算极小众的，其中更新的比较多的up主是[TXTaylor297992](https://space.bilibili.com/1684280853)<br>
+   > 此外，VEX有[中文官方论坛](https://vexforum.cn/)，在这里可以下载到官方给出的规则文档和场地拼接的文档
 
 ### 01 面向对象
 1. 面向对象思维的介绍及引入
@@ -30,8 +39,8 @@
 
 ### 02 主机(brain)与手柄(Controller)
 1. 主机、手柄、电脑之间的硬件连接
-2. 创建新的VEX工程文件、文件标题规范、文件储存位置
-   从VEX插件中 顺次点击 `new project -> v5 -> c++ -> competition template -> 命名项目名字 -> create`，一个新的VEX工程文件就创建了
+2. 创建新的VEX工程文件、文件标题规范、文件储存位置<br>
+   > 从VEX插件中 顺次点击 `new project -> v5 -> c++ -> competition template -> 命名项目名字 -> create`，一个新的VEX工程文件就创建了
 4. Brain.functions()
 5. Controller.functions()
 
