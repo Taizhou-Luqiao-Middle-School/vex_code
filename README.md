@@ -167,7 +167,7 @@
    >        node();                 //构造函数
    >        node(int sum);          //带参数的构造函数
    >        ~node();                //析构函数
-   >        node(const node& obj)   //拷贝构造函数
+   >        node(const node& obj);  //拷贝构造函数
    >        int value(){
    >           return *n;
    >        }
@@ -204,6 +204,7 @@
    > }
    > ```
 8. [头文件](https://zh.wikipedia.org/wiki/%E5%A4%B4%E6%96%87%E4%BB%B6)与注释，cpp与定义
+   > 
 
 ### 02 主机(brain)与手柄(Controller)
 1. 主机、手柄、电脑之间的硬件连接
