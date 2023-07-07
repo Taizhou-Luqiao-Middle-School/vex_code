@@ -37,7 +37,7 @@
    > 前者则是将一个个功能封装进 _对象_ 中，其对应的行为以实现 _类(class)_ 为典型。这种程序设计的思维在 项目化编程 中有极大的优点——重用性、灵活性和扩展性 高
    在此处，我们将从[class](https://www.runoob.com/cplusplus/cpp-classes-objects.html)的声明、定义、使用来入手，切实的感受 ___面向对象___ 的代码风格
 3. classの定义
-   ![菜鸟教程给出的定义结构](https://www.runoob.com/wp-content/uploads/2015/05/cpp-classes-objects-2020-12-10-11.png)
+   [![菜鸟教程给出的定义结构](https://www.runoob.com/wp-content/uploads/2015/05/cpp-classes-objects-2020-12-10-11.png)](https://www.runoob.com/cplusplus/cpp-classes-objects.html)
    * 类 及 类名
      > 给类取名的时候，可以参照[struct](https://www.runoob.com/cplusplus/cpp-data-structures.html)，命名规则和变量一致
      > 类的名字以及成员变量 ___最好___ 有实际意义，例：
@@ -49,7 +49,7 @@
      > };
      > ```
    * 访问修饰符
-   * [不涉及private](red)
+   * (不涉及private)(red)
 5. 重载函数
 6. 构造函数，析构函数及拷贝构造函数
 7. 数据封装
