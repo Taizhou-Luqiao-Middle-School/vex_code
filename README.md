@@ -204,7 +204,73 @@
    > }
    > ```
 8. [头文件](https://zh.wikipedia.org/wiki/%E5%A4%B4%E6%96%87%E4%BB%B6)与注释，cpp与定义
+   > 还记得前文提到过 class 有着较高 重用性，灵活性，拓展性 吗？<br>
+   > 如果在每一个程序的头部复制大量的class的定义，那么这种灵活性就荡然无存了<br>
+   > 因此，就不得不介绍头文件了
+
+
+   > 一个头文件一般包含类、子程序、变量和其他标识符的前置声明<br>
+   > 习惯上，*函数、类、枚举类、常量*的声明会放在头文件中，即`xxx.h`<br>
+   > 而对应的*函数、类*的源码以及*注释*则会放在对应的源文件中，即`xxx.cpp`<br>
+   > 值得注意的是，为了防止头文件被反复调用造成重复声明的错误，头文件应在首行加入
+   > ```cpp
+   > #pragma once
+   > ```
+   > 或者
+   > ```cpp
+   > // xxx.h
+   > #ifndef XXX
+   > #define XXX
+   > //你的代码
+   > #endif
+   > ```
+   > 多说无用，下面摆上样例<br><br>
    > 
+   > [样例：实现高精度算法](https://blog.csdn.net/weixin_30500289/article/details/96110759)<br>
+   > 样例的代码非常的长，但是使用时只需要：
+   > ```cpp
+   > #include "intx.h"
+   > signed main(){
+   >   //...
+   >   return 0;
+   > }
+   > ```
+   > 另外，vscode是支持[doxygen注释](https://www.cnblogs.com/schips/p/12200388.html)的<br>[Doxygen官方文档](https://doxygen.nl/manual/)<br>
+   > 在头文件中使用doxygen注释，可以对声明的类，函数进行说明<br>
+   > 鼠标在引用了对应头文件的文件中只需要悬停在函数/变量/类/命名空间/...上就可以快捷的获知该处的注释<br>
+   > 样例:
+   > ```cpp
+   > // node.h
+   > /**
+   > * @class node
+   > * @brief 表示一个平面直角坐标系中的一个点
+   > ***/
+   > class node{
+   >     private:
+   >        /**
+   >         * @brief 表示坐标 \f$\left ( x,y \right )\f$
+   >        ***/
+   >        int x,y;
+   >     public:
+   >        /**
+   >         * @brief 初始化
+   >         * @param a 对应x坐标
+   >         * @param b 对应y坐标
+   >        ***/
+   >        void set(int a,int b){
+   >           x = a;
+   >           y = b;
+   >        }
+   >        /**
+   >         * @brief 计算距离
+   >         * @param n 第二个坐标点
+   >         * @return 两点距离的平方
+   >        ***/
+   >        float dist(node n){
+   >           return (this->x - n.x)*(this->x - n.x) + (this->y - n.y)*(this->y - n.y);
+   >        }
+   > };
+   > ```
 
 ### 02 主机(brain)与手柄(Controller)
 1. 主机、手柄、电脑之间的硬件连接
