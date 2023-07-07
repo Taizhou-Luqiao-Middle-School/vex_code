@@ -21,17 +21,17 @@
    > 主机<br>
       ![主机图](/image/imageless_qwq_short.png)
    > 手柄<br>
-      ![主机图](/image/imageless_qwq_short.png)
+      ![手柄图](/image/imageless_qwq_short.png)
    > 场控<br>
-      ![主机图](/image/imageless_qwq_short.png)
+      ![场控图](/image/imageless_qwq_short.png)
    > 钢条<br>
-      ![主机图](/image/imageless_qwq_short.png)
+      ![钢条图](/image/imageless_qwq_short.png)
    > 传感器<br>
-      ![主机图](/image/imageless_qwq_short.png)
+      ![传感器图](/image/imageless_qwq_short.png)
    > 电机<br>
-      ![主机图](/image/imageless_qwq_short.png)
+      ![电机图](/image/imageless_qwq_short.png)
    > 气泵<br>
-      ![主机图](/image/imageless_qwq_short.png)
+      ![气泵图](/image/imageless_qwq_short.png)
 8. VEX社区
    > VEX在[B站](https://www.bilibili.com/)中并不算极小众的，其中更新的比较多的up主是[TXTaylor297992](https://space.bilibili.com/1684280853)<br>
    > 此外，VEX有[中文官方论坛](https://vexforum.cn/)，在这里可以下载到官方给出的规则文档和场地拼接的文档
@@ -285,7 +285,7 @@
 
 ### 02 主机(brain)与手柄(Controller)
 1. 主机、手柄、电脑之间的硬件连接
-   ![主机图](/image/imageless_qwq_short.png)
+   ![连线图](/image/imageless_qwq_short.png)
 2. 创建新的VEX工程文件、文件标题规范、文件储存位置<br>
    > 从VEX插件中 顺次点击 `new project -> v5 -> c++ -> competition template -> 命名项目名字 -> create`，一个新的VEX工程文件就创建了
 4. Brain.functions()
