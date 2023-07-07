@@ -114,7 +114,9 @@
       >     private:
       >        int x,y; //坐标
       >     public:
-      >        void operator= (const node& n){  //此处const node& n 也可以写作node n , 使用&是为了提高效率，使用const是为了防止n的值被这里的赋值函数更改
+      >        void operator= (const node& n){  
+      >//此处const node& n 也可以写作node n
+      >//使用&是为了提高效率，使用const是为了防止n的值被这里的赋值函数更改
       >           x = n.x;    // 等效于 this->x = n.x;
       >           y = n.y;    // 等效于 this->y = n.y;
       >     }
