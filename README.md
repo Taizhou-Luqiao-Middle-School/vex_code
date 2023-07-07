@@ -107,7 +107,7 @@
       > ```
    - 重载运算符
       > 在c++中，运算符实际上也可以看作是一种函数，因此，就出现了**重载运算符**的用法<br>
-      > 在这里我们重点介绍 [赋值运算符  = ](https://www.runoob.com/cplusplus/assignment-operators-overloading.html)<br>
+      > 在这里我们介绍 [赋值运算符  = ](https://www.runoob.com/cplusplus/assignment-operators-overloading.html)<br>
       > 多说无益，直接上样例：
       > ```cpp
       > class node{  //平面直角坐标系中的一个点
@@ -115,13 +115,31 @@
       >        int x,y; //坐标
       >     public:
       >        void operator= (const node& n){  
-      >//此处const node& n 也可以写作node n
-      >//使用&是为了提高效率，使用const是为了防止n的值被这里的赋值函数更改
+      >           //此处const node& n 也可以写作node n
+      >           //使用&是为了提高效率，使用const是为了防止n的值被这里的赋值函数更改
       >           x = n.x;    // 等效于 this->x = n.x;
       >           y = n.y;    // 等效于 this->y = n.y;
-      >     }
+      >        }
+      >        friend istream operator>>(istream& in,node& n){
+      >           in>>n.x>>n.y;
+      >           return in;
+      >        }
       > };
+      > 
+      > signed main(){
+      >     node n;
+      >     node m;
+      >     cin >> n;
+      >     m = n;
+      >     // ...
+      >     // 这段代码没有什么意义，只是为了说明重载运算符后类的运算就可以用符合我们原有习惯的写法来编写程序这一点而已
+      >     return 0；
+      >}
       > ```
+      > 可以看出，使用重载运算符的写法非常符合我们对变量的编写习惯。<br>
+      > 这使得我们在使用类时感到非常的舒适 XD<br>
+      > 需要注意的是，所有的运算符函数都是放在 ___public___ 访问修饰符下的<br>(其中 流运算符 是以友元函数的形式)
+      > 
 6. [构造函数和析构函数](https://www.runoob.com/cplusplus/cpp-constructor-destructor.html)，[拷贝构造函数](https://www.runoob.com/cplusplus/cpp-copy-constructor.html)<br>
    > 这三个函数是类中非常特殊的函数
    - 构造函数
