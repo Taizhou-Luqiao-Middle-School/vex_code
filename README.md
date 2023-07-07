@@ -203,7 +203,7 @@
    >     //构造函数的另类用法，其中遇到数值4时会调用node(int num)来把4转化为node类型
    > }
    > ```
-8. 头文件与注释，cpp与定义
+8. [头文件](https://zh.wikipedia.org/wiki/%E5%A4%B4%E6%96%87%E4%BB%B6)与注释，cpp与定义
 
 ### 02 主机(brain)与手柄(Controller)
 1. 主机、手柄、电脑之间的硬件连接
