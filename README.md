@@ -74,8 +74,44 @@
             > 样例中的`length`就不符合数据封装的原则，不要这样写 ~~否则你有可能会被狠狠批斗的~~
 5. [重载函数](https://www.runoob.com/cplusplus/cpp-overloading.html)
    > C++ 允许在同一作用域中的某个函数和运算符指定多个定义，分别称为函数重载和运算符重载。<br>
+   > 在同一个作用域内，可以声明几个功能类似的同名函数，但是这些同名函数的**形式参数**（个数、类型或顺序）必须不同。<br>我们不能仅通过**返回类型**的不同来重载函数。
+   > 重载函数可以为我们调用功能较相近的函数时提供便利,例:
+   > ```cpp
+   > // 哦对了，重载函数在class外也是可以使用的哦
+   > void swap(int& a,int& b)      {int t=a;a=b;b=t;}
+   > void swap(float& a,float& b)  {float t=a;a=b;b=t;}
+   > void swap(bool& a,bool& b)    {bool t=b;a=b;b=t;}
+   > // 以下是在类中使用的
+   > class printer{
+   >     public:
+   >        print(int a)   {cout<<a;}
+   >        print(float a)   {cout<<a;}
+   >        print(string a)   {cout<<a;}
+   > };
+   > //错误示范
+   > int f(void){void}
+   > float f(void){void}
+   > //主函数
+   > signed main(){
+   >     printer p;
+   >     p.print(114514);
+   >     p.print("\n1919810\n");
+   >
+   >     int a,b;
+   >     cin>>a>>b;
+   >     swap(a,b);
+   >     cout<<a<<' '<<b<<endl;
+   >     return 0;
+   > }
+   > ```
 
-6. 构造函数，析构函数及拷贝构造函数
+   > 顺便提一嘴，**重载运算符**也是非常有用的，如果有兴趣可以去[自行学习](https://www.runoob.com/cplusplus/cpp-overloading.html)<br>由于后面不涉及，这里就不讲了
+6. [构造函数和析构函数](https://www.runoob.com/cplusplus/cpp-constructor-destructor.html)，[拷贝构造函数](https://www.runoob.com/cplusplus/cpp-copy-constructor.html)<br>
+   > 这三个函数是类中非常特殊的函数
+   - 构造函数
+      > 类的构造函数是类的一种特殊的成员函数，它会在每次创建类的新对象时执行。<br>构造函数的名称与类的名称是完全相同的，并且不会返回任何类型，也不会返回 void。<br>构造函数可用于为某些成员变量设置初始值。
+   - 析构函数
+   - 拷贝构造函数
 7. 数据封装
 8. 头文件与注释，cpp与定义
 
