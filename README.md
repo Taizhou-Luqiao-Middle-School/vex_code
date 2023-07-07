@@ -42,10 +42,14 @@
      > 给类取名的时候，可以参照[struct](https://www.runoob.com/cplusplus/cpp-data-structures.html)，命名规则和变量一致
      > 类的名字以及成员变量 ___最好___ 有实际意义，例：
      > ```cpp
-     > struct Stu{
-     > string name;//人的名字
-     > int c,m,e;//C代表语文，M代表数学，E代表英语
+     > class student{
+     >    private:
+     >       string name;//人的名字
+     >       int c,m,e;//C代表语文，M代表数学，E代表英语
+     > };
      > ```
+   * 访问修饰符
+   * [不涉及private](red)
 5. 重载函数
 6. 构造函数，析构函数及拷贝构造函数
 7. 数据封装
