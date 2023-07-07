@@ -121,6 +121,7 @@
       >           y = n.y;    // 等效于 this->y = n.y;
       >        }
       >        friend istream operator>>(istream& in,node& n){
+      >           // 不要求掌握，看看就好
       >           in>>n.x>>n.y;
       >           return in;
       >        }
