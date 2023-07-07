@@ -48,8 +48,28 @@
      >       int c,m,e;//C代表语文，M代表数学，E代表英语
      > };
      > ```
-   * 访问修饰符
-   * (不涉及private)(red)
+   * [访问修饰符](https://www.runoob.com/cplusplus/cpp-class-access-modifiers.html)<br>
+        `本教程不涉及 继承 以及 protected 的使用，因为本教程用不到它们`
+        - private
+            > 成员和类的默认访问修饰符是 private <br>
+            > 私有成员变量或函数在类的外部是`不可访问`的，甚至是`不可查看`的。只有`类和友元函数`可以访问私有成员。
+            > 例:
+            > ```cpp
+            > class Box {
+            >    private:
+            >       double width;
+            >    public:
+            >       double length;
+            >       void setWidth( double wid );
+            >       double getWidth( void );
+            >}b;  //相当于换行写了   Box b;
+            > ```
+            > 在这个例子中，变量width的访问修饰符是private，因此`b.width`的写法是非法的<br>
+            > 正确的做法是，通过`b.setwidth(double wid)`来设置`width`的值；
+            > 通过`b.getWidth()`来获得`width`的值<br>
+            > 类似这种 __在私有区域定义数据，在公有区域定义相关的函数，以便在类的外部也可以调用这些函数__ 的做法一般叫做 ___数据封装___ <br>这样能避免受到外界的干扰和误用，从而确保了安全<br>
+            > 样例中的`length`就不符合数据封装的原则，不要这样写 ~~否则你有可能会被狠狠批斗的~~
+        - public
 5. 重载函数
 6. 构造函数，析构函数及拷贝构造函数
 7. 数据封装
