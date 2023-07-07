@@ -36,7 +36,7 @@
    > 后者考虑问题是通常把问题拆分成几个小问题，在编写程序中对应的行为一般有编写若干个函数。由于OI中一般只要考虑一个主问题即可，所以面向对象在OI中出现较多<br>
    > 前者则是将一个个功能封装进 _对象_ 中，其对应的行为以实现 _类(class)_ 为典型。这种程序设计的思维在 项目化编程 中有极大的优点——重用性、灵活性和扩展性 高
    在此处，我们将从[class](https://www.runoob.com/cplusplus/cpp-classes-objects.html)的声明、定义、使用来入手，切实的感受 ___面向对象___ 的代码风格
-3. classの定义
+3. classの定义<br>
    [![菜鸟教程给出的定义结构](https://www.runoob.com/wp-content/uploads/2015/05/cpp-classes-objects-2020-12-10-11.png)](https://www.runoob.com/cplusplus/cpp-classes-objects.html)
    * 类 及 类名
      > 给类取名的时候，可以参照[struct](https://www.runoob.com/cplusplus/cpp-data-structures.html)，命名规则和变量一致
@@ -74,7 +74,7 @@
             > 样例中的`length`就不符合数据封装的原则，不要这样写 ~~否则你有可能会被狠狠批斗的~~
 5. [重载函数](https://www.runoob.com/cplusplus/cpp-overloading.html)
    > C++ 允许在同一作用域中的某个函数和运算符指定多个定义，分别称为函数重载和运算符重载。<br>
-   
+
 6. 构造函数，析构函数及拷贝构造函数
 7. 数据封装
 8. 头文件与注释，cpp与定义
