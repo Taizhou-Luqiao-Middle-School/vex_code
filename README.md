@@ -272,7 +272,9 @@
    > };
    > ```
    > 鼠标悬停效果图<br>
-   ![node的样例](/image/01-8-e1.png)
+   ![node的样例](/image/01-8-e1.png)<br>
+   ![set()的样例](/image/01-8-e2.png)<br>
+   ![dist()的样例](/image/01-8-e3.png)<br>
 
 ### 02 主机(brain)与手柄(Controller)
 1. 主机、手柄、电脑之间的硬件连接
