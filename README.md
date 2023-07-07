@@ -72,40 +72,54 @@
             > 通过`b.getWidth()`来获得`width`的值<br>
             > 类似这种 __在私有区域定义数据，在公有区域定义相关的函数，以便在类的外部也可以调用这些函数__ 的做法一般叫做 ___数据封装___ <br>这样能避免受到外界的干扰和误用，从而确保了安全<br>
             > 样例中的`length`就不符合数据封装的原则，不要这样写 ~~否则你有可能会被狠狠批斗的~~
-5. [重载函数](https://www.runoob.com/cplusplus/cpp-overloading.html)
-   > C++ 允许在同一作用域中的某个函数和运算符指定多个定义，分别称为函数重载和运算符重载。<br>
-   > 在同一个作用域内，可以声明几个功能类似的同名函数，但是这些同名函数的**形式参数**（个数、类型或顺序）必须不同。<br>我们不能仅通过**返回类型**的不同来重载函数。
-   > 重载函数可以为我们调用功能较相近的函数时提供便利,例:
-   > ```cpp
-   > // 哦对了，重载函数在class外也是可以使用的哦
-   > void swap(int& a,int& b)      {int t=a;a=b;b=t;}
-   > void swap(float& a,float& b)  {float t=a;a=b;b=t;}
-   > void swap(bool& a,bool& b)    {bool t=b;a=b;b=t;}
-   > // 以下是在类中使用的
-   > class printer{
-   >     public:
-   >        print(int a)   {cout<<a;}
-   >        print(float a)   {cout<<a;}
-   >        print(string a)   {cout<<a;}
-   > };
-   > //错误示范
-   > int f(void){void}
-   > float f(void){void}
-   > //主函数
-   > signed main(){
-   >     printer p;
-   >     p.print(114514);
-   >     p.print("\n1919810\n");
-   >
-   >     int a,b;
-   >     cin>>a>>b;
-   >     swap(a,b);
-   >     cout<<a<<' '<<b<<endl;
-   >     return 0;
-   > }
-   > ```
-
-   > 顺便提一嘴，**重载运算符**也是非常有用的，如果有兴趣可以去[自行学习](https://www.runoob.com/cplusplus/cpp-overloading.html)<br>由于后面不涉及，这里就不讲了
+5. [重载函数和重载运算符](https://www.runoob.com/cplusplus/cpp-overloading.html)
+   - 重载函数
+      > C++ 允许在同一作用域中的某个函数和运算符指定多个定义，分别称为函数重载和运算符重载。<br>
+      > 在同一个作用域内，可以声明几个功能类似的同名函数，但是这些同名函数的**形式参数**（个数、类型或顺序）必须不同。<br>我们不能仅通过**返回类型**的不同来重载函数。
+      > 重载函数可以为我们调用功能较相近的函数时提供便利,例:
+      > ```cpp
+      > // 哦对了，重载函数在class外也是可以使用的哦
+      > void swap(int& a,int& b)      {int t=a;a=b;b=t;}
+      > void swap(float& a,float& b)  {float t=a;a=b;b=t;}
+      > void swap(bool& a,bool& b)    {bool t=b;a=b;b=t;}
+      > // 以下是在类中使用的
+      > class printer{
+      >     public:
+      >        print(int a)   {cout<<a;}
+      >        print(float a)   {cout<<a;}
+      >        print(string a)   {cout<<a;}
+      > };
+      > //错误示范
+      > int f(void){void}
+      > float f(void){void}
+      > //主函数
+      > signed main(){
+      >     printer p;
+      >     p.print(114514);
+      >     p.print("\n1919810\n");
+      >
+      >     int a,b;
+      >     cin>>a>>b;
+      >     swap(a,b);
+      >     cout<<a<<' '<<b<<endl;
+      >     return 0;
+      > }
+      > ```
+   - 重载运算符
+      > 在c++中，运算符实际上也可以看作是一种函数，因此，就出现了**重载运算符**的用法<br>
+      > 在这里我们重点介绍 [赋值运算符  = ](https://www.runoob.com/cplusplus/assignment-operators-overloading.html)<br>
+      > 多说无益，直接上样例：
+      > ```cpp
+      > class node{  //平面直角坐标系中的一个点
+      >     private:
+      >        int x,y; //坐标
+      >     public:
+      >        void operator= (const node& n){  //此处const node& n 也可以写作node n , 使用&是为了提高效率，使用const是为了防止n的值被这里的赋值函数更改
+      >           x = n.x;    // 等效于 this->x = n.x;
+      >           y = n.y;    // 等效于 this->y = n.y;
+      >     }
+      > };
+      > ```
 6. [构造函数和析构函数](https://www.runoob.com/cplusplus/cpp-constructor-destructor.html)，[拷贝构造函数](https://www.runoob.com/cplusplus/cpp-copy-constructor.html)<br>
    > 这三个函数是类中非常特殊的函数
    - 构造函数
