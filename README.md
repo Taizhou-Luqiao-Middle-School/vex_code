@@ -19,9 +19,10 @@
    > 可以点击 _打开文件夹_ 来开始你的代码
 6. 硬件条件
    > 主机<br>
-      ![主机图](/image/imageless_qwq_short.png)<br>
+      ![主机图](/image/01-4-1.png)<br>
    > 手柄<br>
-      ![手柄图](/image/imageless_qwq_short.png)<br>
+      ![手柄正面图](/image/01-4-2-2.jpg)<br>
+      ![手柄背面图](/image/01-4-2-1.jpg)<br>
    > 场控<br>
       ![场控图](/image/imageless_qwq_short.png)<br>
    > 钢条<br>
@@ -29,9 +30,9 @@
    > 传感器<br>
       ![传感器图](/image/imageless_qwq_short.png)<br>
    > 电机<br>
-      ![电机图](/image/imageless_qwq_short.png)<br>
+      ![电机图](/image/01-4-6.jpg)<br>
    > 气泵<br>
-      ![气泵图](/image/imageless_qwq_short.png)<br>
+      ![气泵图](/image/01-4-7.jpg)<br>
 8. VEX社区
    > VEX在[B站](https://www.bilibili.com/)中并不算极小众的，其中更新的比较多的up主是[TXTaylor297992](https://space.bilibili.com/1684280853)<br>
    > 此外，VEX有[中文官方论坛](https://vexforum.cn/)，在这里可以下载到官方给出的规则文档和场地拼接的文档
@@ -279,9 +280,17 @@
    > };
    > ```
    > 鼠标悬停效果图<br>
-   ![node的样例](/image/01-8-e1.png)<br>
-   ![set()的样例](/image/01-8-e2.png)<br>
-   ![dist()的样例](/image/01-8-e3.png)<br>
+   ![node的样例](/image/01-5-e1.png)<br>
+   ![set()的样例](/image/01-5-e2.png)<br>
+   ![dist()的样例](/image/01-5-e3.png)<br>
+6. 后期学习方式
+   > 学会了class的阅读、编写后，我们进入后面的学习就有了一定的基础<br>
+   在vscode中，***ctrl+左键***可以查看头文件、函数、类的定义区域<br>
+   进入`v5_vcs.h`->`v5_cpp.h`->`需要查询的文件`，就可以看到官方给出的所有函数的定义。<br>
+   ![](image/01-6-e1.png)<br>
+   ![](image/01-6-e2.png)<br>
+   ![](image/01-6-e3.png)<br>
+   当然，我会在接下来的章节来挑选重点的函数来讲解。有兴趣有余力的同学可以根据这个方法自行探究。<br>
 
 ### 02 主机(brain)与手柄(Controller)
 1. 主机、手柄、电脑之间的硬件连接<br>
