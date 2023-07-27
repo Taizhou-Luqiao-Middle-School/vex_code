@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "memory": "cpp",
+        "optional": "cpp",
+        "random": "cpp",
+        "*.ds_store": "cpp"
+    }
+}
