@@ -298,7 +298,124 @@
 2. 创建新的VEX工程文件、文件标题规范、文件储存位置<br>
    > 从VEX插件中 顺次点击 `new project -> v5 -> c++ -> competition template -> 命名项目名字 -> create`，一个新的VEX工程文件就创建了
 4. Brain.functions()
+   鉴于LXB水平有限，所以这里只讲一部分重要的函数
+   * 定义
+      ```cpp
+      // robot-config.h
+      extern brain Brain;
+      ```
+      构造函数没有参数输入
+   * brain.timer
+      - 定义
+         ```cpp
+         // vex_brain.cpp
+         /** 
+         * @brief 以指定的单位获取计时器的值。
+         * @param units 时间单位。有 sec (秒) 和 msec (毫秒)
+         * @return 返回一个双精度值，该值表示计时器的值。
+         */
+         double timer( timeUnits units );
+         /** 
+         * @brief 将计时器重置为零。
+         */
+         void reset();
+         ```
+      - 使用例
+         ```cpp
+         // your_file.cpp
+         float xxx;
+         Brain.Timer.reset();// 虽然在这里没必要但是这是一个好习惯
+         xxx = Brain.Timer.time(sec);
+         while ( Brain.Timer.time(msec) <= xxx*1000 + 1145 ); //空循环，经过1.145s之后会继续
+         ```
+   * brain.screen
+      - 定义
+         ```cpp
+         // vex_brain.cpp
+         void print( char *format, ... );
+         void printAt( int x, int y, const char *format, ... );
+         ```
+      - 使用说明<br>
+         这里的`print()`函数的使用和`printf()`无异<br>
+         `printAt()`添加了参数`x`、`y`,含义是在主机屏幕输出时开始的坐标
 5. Controller.functions()
+   * 定义
+      ```cpp
+      // robot-config.h
+      extern controller Controller;
+      ```
+      和 `brain` 的定义一样平淡
+   * 按钮<br>
+    ![](image/01-4-2-2.jpg)</br>
+    图中按钮可用的共有10个，分别是：
+     - ButtonLeft
+     - ButtonRight
+     - ButtonUp
+     - ButtonDown
+     - ButtonA
+     - ButtonB
+     - ButtonX
+     - ButtonY
+     - ButtonL1
+     - ButtonL2
+     - ButtonR1
+     - ButtonR2
+
+      他们都属于 `controller`类中的成员类`button`，有以下成员函数：
+     + pressing()</br>
+      检查当下，如果按钮被按下则返回`true`，否则返回`false`。
+     + pressed()</br>
+      形参需要填入一个`void`函数的函数名来调用</br>
+      下次按钮被按下的时候调用函数
+
+      使用例:
+      ```cpp
+      // your_file.cpp
+      // ...
+      void function(void){
+         // ...
+      }
+
+      signed main(){
+      // ...
+         if ( Controller1.ButtonA.pressing() ){
+            // ...
+         }
+         Controller1.ButtonB.pressed(function);
+      }
+      ```
+
+   * 摇杆<br>
+      遥控器上看似只有两个遥感，实际上程序中对应了4个`axis`对象:
+      - Axis1
+      - Axis2
+      - Axis3
+      - Axis4
+
+      一个遥杆可以向任意二维方向旋转，每一个二维的位置都可以用二维坐标来表示。也就是说，一个摇杆对应了两个不同方向的`axis`对象。<br>
+      其中，`Axis1`和`Axis4`都是横向的，`Axis2`和`Axis3`都是竖向的。<br>
+      `axis`一般只使用成员函数`position()`
+      ```cpp
+      // your_file.cpp
+      void Dipan(){
+         // 底盘运动函数
+         float a1 = Controller1.Axis1.position(percent);
+         float a3 = Controller1.Axis3.position(percent);
+         move(a3+a1,a3-a1);
+      }
+      ```
+
+   * 屏幕<br>
+      有时，我们需要在遥控器上面显示信息来提示操作手。例如，改变了某个电机的转速时，通过提示操作手可以方便操作手进行下一步操作。<br>
+      下面是在屏幕上显示一段文字的实例:
+      ```cpp
+      // your_debug_file.cpp
+      /* ... */ {
+         Controller1.Screen.clearLine(); // 清空之前的消息
+         Controller1.Screen.print("电机温度:%.2f ℃",MotorShot.temperature(celsius)); //输出格式同std::printf()
+      }
+      ```
+      
 
 ### 03 电机(motor)与运动
 1. 声明、命名
