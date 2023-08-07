@@ -551,7 +551,8 @@
 5. 画外吐槽<br>
    我非常讨厌陀螺仪</br>
    因为它带给我的回忆除了出bug就是掉链子</br>
-   <iframe src="//player.bilibili.com/player.html?aid=947546060&bvid=BV1FW4y1V7af&cid=957540001&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+   
+   [![](https://bb-embed.herokuapp.com/embed?v=BV1FW4y1V7af)](https://www.bilibili.com/video/BV1FW4y1V7af)
 
 ### 05 气泵
 1. 定义、命名
