@@ -552,7 +552,7 @@
    我非常讨厌陀螺仪</br>
    因为它带给我的回忆除了出bug就是掉链子</br>
    
-   [![](https://bb-embed.herokuapp.com/embed?v=BV1FW4y1V7af)](https://www.bilibili.com/video/BV1FW4y1V7af)
+   [陀螺仪发癫珍贵录像](https://www.bilibili.com/video/BV1FW4y1V7af)
 
 ### 05 气泵
 1. 定义、命名
