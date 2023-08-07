@@ -418,21 +418,140 @@
       
 
 ### 03 电机(motor)与运动
-1. 声明、命名
-2. 电机 与 手动控制程序
+1. 声明<br>
+   `motor`的构造函数有3个参数(建议都填入),分别是`index`、`gears`、`reverse`。
+   ```cpp
+   // vex_motor.h
+      motor( int32_t index, gearSetting gears, bool reverse );
+   ```
+   - `index`<br>
+      表明电机接入的端口。<br>
+      主机上有两排端口,编号1-22。电机接入第`N`个端口就写 `PORTN`
+   - `gears`<br>
+      表明电机转速比<br>
+      有三种转速比,`ratio6_1`、`ratio18_1`、`ratio36_1`,<br>分别对应三种颜色的电机:蓝电机、绿电机、红电机<br>
+
+      ![](image/motor_radio.png)<br>
+   - `reverse`<br>
+      电机默认转向:正转or反转
+
+   ```cpp
+   // robot-config.h
+   // ...
+   motor MotorLF = motor(PORT1,radio18_1,false);
+   motor MotorLB = motor(PORT2,radio18_1,false);
+   motor MotorRF = motor(PORT3,radio18_1,true);
+   motor MotorRB = motor(PORT4,radio18_1,true);
+   ```
+2. 电机 与 手动控制程序<br>
+   - 电机转动</br>
+      + `spin()`<br>
+         此函数会让电机以指定速度旋转。</br>
+         ```cpp
+         // vex_motor.h
+         /**
+         * @brief 打开电机并按指定方向和指定速度旋转。
+         * @param dir 电机旋转的方向。有 forward 和 reverse 两种值。也支持 fwd 和 rev 两种缩写
+         * @param velocity 速度大小。值域[-100.0,100.0]。超出则化为 ±100
+         * @param units 速度的单位。常用 percent ,也可缩写为 pct
+         */
+         void spin( directionType dir, double velocity, velocityUnits units );
+         ```
+         以底盘的运动程序为例：
+         
+         ```cpp
+         // your_file.h
+         void move(float l,float r){
+            MotorLF.spin(forward,l,pct);
+            MotorLB.spin(forward,l,pct);
+            MotorRF.spin(forward,r,pct);
+            MotorRB.spin(forward,r,pct);
+         }
+         ```
+      + `stop()`</br>
+         使电机停止(停止向电机供电)
+         ```cpp
+         /** 
+         * @brief 使用默认制动模式停止电机。
+         */
+         void stop( void );
+
+         /** 
+         * @brief 使用指定的制动模式停止电机。
+         * @param mode 制动模式可以设置为滑行(coast)、制动(brake)或保持(hold)。
+         */
+         void stop( brakeType mode );
+         ```
+         以底盘的停止运行为例:
+         ```cpp
+         // your_file.cpp
+         void Stop(){
+            MotorLF.stop(coast);
+            MotorLB.stop(coast);
+            MotorRF.stop(coast);
+            MotorRB.stop(coast);
+         }
+         ```
+         底盘的停止一般使用`coast`。这是为了防止`hold`状态下机器人被碰撞导致电机的损坏。
 3. 监测电机
-   * position()
-   * resetposition()
-   * temptrue()
+   * `double position( rotationUnits units )`</br>
+      返回电机转过的角度</br>
+      一般填入单位 degrees</br>
+   * `void resetPosition()`</br>
+      重置 `position()`的返回值</br>
+      重置需要一小段时间，重置时尽量保持电机的静止
+   * `double temperature( temperatureUnits units );`</br>
+      返回电机此时的温度<br>
+      可填入单位 摄氏度(`celsius`)<br>
    * ...
 
 ### 04 陀螺仪 与 自动转弯
 1. 声明、命名
+   需要填入的参数仅有端口
+   ```cpp
+   // vex_imu.h
+   inertial( int32_t index, turnType dir = turnType::right );  
+   ```
+   声明比`motor`简单
+   ```cpp
+   // robot-config.cpp
+   inertial ine = inertial(PORT11);
+   ```
 2. 初始化
+   类似于`motor`中的`position()`，对陀螺仪初始化是必要的。
+   ```cpp
+   // your_file.cpp
+   void reset(){
+      //初始化底盘电机
+      MotorLF.resetPosition();
+      MotorLB.resetPosition();
+      MotorRF.resetPosition();
+      MotorRB.resetPosition();
+      //初始化陀螺仪
+      ine.calibrate();
+      //初始化计时器
+      Brain.Timer.reset();
+   }
+   ```
 3. 数据检测
-   * heading()
+   > 仅介绍最常用的`heading()`,其他函数仅作涉及
+
+   * `heading()`
+      ```cpp
+      /**
+       * @brief 获取惯性传感器的水平方向,方向角取值范围 [0,360] ,单位:度
+       * @return 返回一个double值，该值表示惯性传感器的方向。
+       * @param units 单位,默认为度
+       */
+      double heading( rotationUnits units = rotationUnits::deg );
+      ```
+   * `rotation()`  
+      获取仰角
 4. 自动程序中的转弯问题
-5. 画外吐槽
+5. 画外吐槽<br>
+   我非常讨厌陀螺仪</br>
+   因为它带给我的回忆除了出bug就是掉链子</br>
+   <iframe src="//player.bilibili.com/player.html?aid=947546060&bvid=BV1FW4y1V7af&cid=957540001&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
 
 ### 05 气泵
 1. 定义、命名
