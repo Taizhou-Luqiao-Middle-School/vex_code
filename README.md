@@ -485,14 +485,23 @@
          以底盘的停止运行为例:
          ```cpp
          // your_file.cpp
-         void Stop(){
-            MotorLF.stop(coast);
-            MotorLB.stop(coast);
-            MotorRF.stop(coast);
-            MotorRB.stop(coast);
+         void Stop(bool flag = false){
+            if (flag == false){
+               MotorLF.stop(coast);
+               MotorLB.stop(coast);
+               MotorRF.stop(coast);
+               MotorRB.stop(coast);
+            }
+            else{
+               MotorLF.stop(hold);
+               MotorLB.stop(hold);
+               MotorRF.stop(hold);
+               MotorRB.stop(hold);
+            }
          }
          ```
          底盘的停止一般使用`coast`。这是为了防止`hold`状态下机器人被碰撞导致电机的损坏。
+         自动程序中由于有`不允许进入对手场地`的规则，因此只要队伍内部有配合，就不用讨论上述的问题
 3. 监测电机
    * `double position( rotationUnits units )`</br>
       返回电机转过的角度</br>
@@ -545,9 +554,50 @@
        */
       double heading( rotationUnits units = rotationUnits::deg );
       ```
+      
    * `rotation()`  
       获取仰角
-4. 自动程序中的转弯问题
+4. 自动程序中的转弯问题</br>
+   自动程序中，是不可以通过操作手柄来给机器人输入数据的。因此，机器人在自动赛时段的运动完全依靠程序的预设。</br>
+   *如何让机器人旋转到我们需要的方向？*<br>
+
+
+   最简单的写法是使用计时器。机器人旋转的速度是粗略相等的，因此在程序开发时间较短的情况下，这可以作为最后的保底程序来使用。
+   ```cpp
+   // your_auto_file.cpp
+   void turn_with_timer(int t){
+      int turn_speed=100;
+      if (t<0) {
+         turn_speed=-100;
+         t=-t;
+      }                                   // 左右转放在同一程序里
+      move(turn_speed,-turn_speed);
+      wait(t,msec);                       // 定义见于vex.h中
+      stop(true);                         // 旋转结束建议锁死，以提高准确度
+   }
+   ```
+   但是这并不是一个合适的方案。我们难以控制每次旋转时的环境因素保持一样(比如地面摩擦系数，电机温度，电池电压等)。有时这种小小的偏差就会导致行进线路的变形，会影响到之后的自动任务，甚至可能`DQ(犯规)`。</br>
+   在精准转弯的要求下，我们便需要陀螺仪来帮助校准。</br>
+   ```cpp
+   // your_auto_file.cpp
+   #include "extensions.h"    // include pids.h
+   void turn(int deg){
+      pids turning ;          // 定义pid算法对象
+      turning.pre(deg,10);    // 向pid系统中输入目标和最大允许偏差
+      float movement;         // 记录每次pid系统反馈的运动量
+      Ine.calibrate();        // 初始化陀螺仪
+      while ( turning.check (Ine.heading(degrees)) )  {
+                              // 当机器人还未稳定在最大允许偏差区间内时一直不断调整
+        movement = turning.moving();
+        move(-movement *0.4,movement *0.4);
+                              // 运动
+      }
+      
+      stop(false);             // pid算法下机器人旋转的末速度很小，不需要hold
+      wait (0.8,sec);          // 等待机器人彻底停止
+   }
+   ```
+   `PID算法`将在[第7章节](/README.md/#07-pid精确控制算法)中详细介绍其优缺点。
 5. 画外吐槽<br>
    我非常讨厌陀螺仪</br>
    因为它带给我的回忆除了出bug就是掉链子</br>
