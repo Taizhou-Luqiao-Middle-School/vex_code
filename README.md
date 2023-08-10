@@ -334,10 +334,12 @@
          // vex_brain.cpp
          void print( char *format, ... );
          void printAt( int x, int y, const char *format, ... );
+         void drawPixel( int x,int y)
          ```
       - 使用说明<br>
          这里的`print()`函数的使用和`printf()`无异<br>
-         `printAt()`添加了参数`x`、`y`,含义是在主机屏幕输出时开始的坐标
+         `printAt()`添加了参数`x`、`y`,含义是在主机屏幕输出时开始的坐标</br>
+         `drawPixel`是在屏幕的(x,y)处绘制一个像素点
 5. Controller.functions()
    * 定义
       ```cpp
@@ -605,11 +607,50 @@
    [陀螺仪发癫珍贵录像](https://www.bilibili.com/video/BV1FW4y1V7af)
 
 ### 05 气泵
-1. 定义、命名
-2. 实物介绍
+1. 定义、命名</br>
+   气泵的程序其实是最简单的，只不过定义和电机或者传感器都有点区别
+   ```cpp
+   // vex_triport.h
+   /**
+   * @brief 在参数中指定的三线端口上创建新的digital_out对象。
+   * @param port 三线端口。
+   */
+   digital_out( triport::port &port );
+   ```
+   `triport`和电机端口的`int32_t`不同</br>
+   |port : |int32_t|triport|
+   |-|-|-|
+   |个数|21|8|
+   |编号|1-22|A-H|
+   |位置|主机上下两侧|主机左侧|
+   |格式|PORTn|Brain.ThreeWirePort.N|
+
+   习惯上把气泵命名为 `pne` (Pneumatic components)
+   ```cpp
+   // robot-config.cpp
+   digital_out pne ( Brain.ThreeWirePort.A );
+   ```
+
+2. 实物介绍</br>
+   气泵的程序很简单，但是气泵的部件比电机复杂的多</br>
+   ![](image/05-2-e1.png)</br>
+   图中的结构中，通过程序所能操作的仅仅是 发送到/接受数据于 `换向阀驱动器` ，从而改变换向阀联通的状态。<br>
+   机器人上是否使用气泵，需要考虑机械师的技术水平。因为程序能在气泵上做的事情太少太简单了。
 3. functions
-   * set()
-   * value()
+   * `set()`
+      设置气泵的伸缩状态。
+      ```cpp
+      /**
+         * @brief 将digital_out设备设置为布尔值。
+         * @param value 布尔值。(true or false)
+         */
+        void set( bool value );
+      ```
+      当`pne.set(true)`执行后，换向阀驱动器将会亮起红灯<br>
+      当`pne.set(false)`执行后，换向阀驱动器红队将会熄灭
+   * value()<br>
+      读取气泵的状态<br>
+      `pne.set(true)`后，value的返回值就会变为`true`，反之亦然。
 
 ### 06 视觉传感器
 1. 定义、命名
@@ -621,7 +662,10 @@
 1. 定义
 2. 原理介绍
 3. 使用方法
-4. 优缺点
+4. 优缺点</br>
+   优点在本章中已经反复强调了,就是通过pid算法的控制，机器人能够精确的运动。</br>
+   缺点就是把pid的算法中用于前进的控制中会大大降低前进的效率</br>
+   这种缺点只会体现在***需要停止的运动***中，比如说**前进**、**转弯**这类运动中。pid最适合的应用应该是 ___一直维持某种状态___ 的情况下，例如 __平衡车的平衡__ , 这时pid的运行是贯彻平衡车运动的始终的，也就不存在所谓**超时**的问题了。
 
 ### 08 手动程序
 1. 与操作手对接
